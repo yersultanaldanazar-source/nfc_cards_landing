@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     let placeData = null;
 
     try {
-        const response = await fetch('/places.json');
+        const response = await fetch('/places.json?v=' + new Date().getTime());
         if (!response.ok) throw new Error('Network error');
         
         const places = await response.json();
