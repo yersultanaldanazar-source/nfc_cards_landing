@@ -1,0 +1,184 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
+:root {
+    --bg-color: #f9fafb; /* Мягкий светлый фон */
+    --card-bg: #ffffff;
+    --text-primary: #111827; /* Глубокий темный текст */
+    --text-secondary: #6b7280; /* Приятный серый для подзаголовков */
+    --star-active: #fbbf24; /* Современный теплый желтый цвет */
+    --star-inactive: #e5e7eb;
+    --btn-bg: #111827;
+    --btn-hover: #374151;
+    --btn-text: #ffffff;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: var(--text-primary);
+    padding: 24px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.container {
+    background-color: var(--card-bg);
+    width: 100%;
+    max-width: 420px;
+    padding: 48px 32px;
+    border-radius: 32px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0,0,0,0.02);
+    text-align: center;
+}
+
+.hidden { 
+    display: none !important; 
+}
+
+#status-message { 
+    font-size: 16px; 
+    font-weight: 500;
+    color: var(--text-secondary); 
+}
+
+#logo {
+    width: 96px; 
+    height: 96px; 
+    border-radius: 28px;
+    object-fit: cover; 
+    margin-bottom: 24px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+h1 { 
+    font-size: 26px; 
+    font-weight: 700; 
+    margin-bottom: 10px; 
+    letter-spacing: -0.02em; 
+}
+
+.subtitle { 
+    font-size: 15px; 
+    font-weight: 500;
+    color: var(--text-secondary); 
+    margin-bottom: 32px; 
+}
+
+.stars-container { 
+    display: flex; 
+    justify-content: center; 
+    gap: 12px; 
+    margin-bottom: 24px; 
+}
+
+.star {
+    font-size: 48px; 
+    color: var(--star-inactive); 
+    cursor: pointer;
+    transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.2s ease; 
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.star.active { 
+    color: var(--star-active); 
+    filter: drop-shadow(0 4px 6px rgba(251, 191, 36, 0.25)); /* Мягкое свечение звезд */
+}
+
+.star:active { 
+    transform: scale(0.85); 
+}
+
+#complaint-block, #thank-you-block { 
+    animation: fadeSlideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards; 
+}
+
+@keyframes fadeSlideUp { 
+    from { 
+        opacity: 0; 
+        transform: translateY(16px); 
+    } 
+    to { 
+        opacity: 1; 
+        transform: translateY(0); 
+    } 
+}
+
+.complaint-text { 
+    font-size: 15px; 
+    font-weight: 500;
+    color: var(--text-secondary); 
+    margin-bottom: 16px; 
+    line-height: 1.5; 
+}
+
+textarea {
+    width: 100%; 
+    border: 2px solid transparent; 
+    border-radius: 20px; 
+    padding: 16px 20px;
+    font-size: 15px; 
+    font-weight: 500;
+    resize: none; 
+    outline: none; 
+    transition: all 0.2s ease;
+    background-color: var(--bg-color); 
+    margin-bottom: 16px; 
+    -webkit-appearance: none;
+    color: var(--text-primary);
+}
+
+textarea::placeholder {
+    color: #9ca3af;
+}
+
+textarea:focus { 
+    border-color: var(--btn-bg);
+    background-color: var(--card-bg);
+}
+
+button {
+    width: 100%; 
+    background-color: var(--btn-bg); 
+    color: var(--btn-text);
+    border: none; 
+    padding: 18px; 
+    border-radius: 20px; 
+    font-size: 16px;
+    font-weight: 600; 
+    letter-spacing: 0.01em;
+    cursor: pointer; 
+    transition: all 0.2s ease;
+    -webkit-appearance: none;
+}
+
+button:hover:not(:disabled) {
+    background-color: var(--btn-hover);
+    transform: translateY(-1px);
+}
+
+button:active { 
+    transform: scale(0.97); 
+}
+
+button:disabled { 
+    opacity: 0.5; 
+    cursor: not-allowed; 
+}
+
+#thank-you-block h2 { 
+    font-size: 24px; 
+    margin-bottom: 12px; 
+    color: #10b981; 
+    letter-spacing: -0.02em;
+}

@@ -1,0 +1,14 @@
+{
+  "coffee_boom": {
+    "name": "Coffee Boom",
+    "logo_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHetWXWVg-Ui1eL93f95ZV0VqmxmtpfuJjJxWvD3S94g&s=10",
+    "map_link": "https://2gis.kz/almaty/firm/70000001038800551/tab/reviews",
+    "tg_chat_id": "-1004498552690"
+  },
+  "invictus_gym": {
+    "name": "Invictus Gym",
+    "logo_url": "https://placehold.co/150x150/000000/FFFFFF?text=IG",
+    "map_link": "https://2gis.kz/",
+    "tg_chat_id": "-1000987654321"
+  }
+}

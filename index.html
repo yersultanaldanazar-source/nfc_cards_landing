@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Оцените наш сервис</title>
+    <link rel="stylesheet" href="style.css?v=2">
+</head>
+<body>
+    <div class="container" id="app-container">
+        <div id="status-message">Загрузка...</div>
+        <div id="content" class="hidden">
+            <img id="logo" src="" alt="Логотип">
+            <h1 id="place-name">Название</h1>
+            <p class="subtitle" id="subtitle">Пожалуйста, оцените наш сервис</p>
+            <div class="stars-container" id="stars">
+                <span class="star" data-value="1">★</span>
+                <span class="star" data-value="2">★</span>
+                <span class="star" data-value="3">★</span>
+                <span class="star" data-value="4">★</span>
+                <span class="star" data-value="5">★</span>
+            </div>
+            <div id="complaint-block" class="hidden">
+                <p class="complaint-text">Нам очень жаль. Расскажите, что пошло не так?</p>
+                <textarea id="complaint-input" rows="4" placeholder="Ваш комментарий..."></textarea>
+                <button id="submit-btn">Отправить</button>
+            </div>
+            <div id="thank-you-block" class="hidden">
+                <h2>Спасибо за отзыв!</h2>
+                <p class="complaint-text">Мы свяжемся с руководством и обязательно исправим ситуацию.</p>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
