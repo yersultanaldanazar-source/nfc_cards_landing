@@ -1,14 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
 
 :root {
-    --bg-color: #050505; 
-    --card-bg: rgba(20, 20, 25, 0.15);
+    --bg-color: #000000; 
+    --card-bg: rgba(18, 18, 22, 0.45);
     --text-primary: #f8fafc; 
     --text-secondary: #94a3b8; 
     --star-active: #fbbf24; 
     --star-inactive: rgba(255, 255, 255, 0.15);
-    --btn-bg: rgba(255, 255, 255, 0.05);
-    --btn-hover: rgba(255, 255, 255, 0.1);
+    --btn-bg: rgba(255, 255, 255, 0.06);
+    --btn-hover: rgba(255, 255, 255, 0.12);
     --btn-text: #ffffff;
 }
 
@@ -20,29 +20,16 @@
 }
 
 body {
-    background-color: var(--bg-color);
-    
-    /* Темный Pipo-подобный анимированный Mesh градиент */
-    background-image: 
-        radial-gradient(circle at 20% 30%, rgba(45, 25, 80, 0.6) 0%, transparent 50%),
-        radial-gradient(circle at 80% 80%, rgba(25, 60, 90, 0.6) 0%, transparent 50%),
-        radial-gradient(circle at 50% 10%, rgba(80, 20, 40, 0.4) 0%, transparent 40%);
-    background-attachment: fixed;
-    animation: meshFlow 15s ease-in-out infinite alternate;
-
+    background-color: #000000;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
     color: var(--text-primary);
     padding: 24px;
+    overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-}
-
-@keyframes meshFlow {
-    0% { background-position: 0% 0%; }
-    100% { background-position: 100% 100%; }
 }
 
 /* Floating Paths Background */
@@ -53,6 +40,7 @@ body {
     z-index: 0;
     overflow: hidden;
     color: #ffffff;
+    transform: translateZ(0);
 }
 
 .floating-paths-svg {
@@ -60,6 +48,7 @@ body {
     inset: 0;
     width: 100%;
     height: 100%;
+    display: block;
 }
 
 .container {
@@ -72,13 +61,14 @@ body {
     position: relative;
     z-index: 10;
     overflow: hidden;
+    transform: translateZ(0);
 
-    /* Liquid Glass Эффекты */
-    backdrop-filter: blur(24px) saturate(150%) url('#container-glass');
-    -webkit-backdrop-filter: blur(24px) saturate(150%);
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    /* Стабильный Liquid Glass без моргания GPU */
+    backdrop-filter: blur(20px) saturate(140%);
+    -webkit-backdrop-filter: blur(20px) saturate(140%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     
-    /* Из промпта (Liquid Glass Button Shadow, адаптированная под окно) */
+    /* Многослойные блики Liquid Glass */
     box-shadow: 
         0 0 8px rgba(0,0,0,0.03),
         0 2px 6px rgba(0,0,0,0.08),
@@ -88,7 +78,7 @@ body {
         inset -1px -1px 1px -0.5px rgba(255,255,255,0.6),
         inset 0 0 6px 6px rgba(255,255,255,0.08),
         inset 0 0 2px 2px rgba(255,255,255,0.04),
-        0 0 24px rgba(0,0,0,0.3);
+        0 0 24px rgba(0,0,0,0.5);
 }
 
 .hidden { 

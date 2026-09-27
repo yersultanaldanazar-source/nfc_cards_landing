@@ -25,12 +25,13 @@ function initFloatingPaths() {
             path.setAttribute("stroke-width", String(0.5 + i * 0.03));
             path.setAttribute("stroke-opacity", String(0.1 + i * 0.03));
             path.setAttribute("pathLength", "1");
+            path.style.strokeDasharray = "0.45 0.55";
 
             const duration = (20 + Math.random() * 10) * 1000;
             path.animate([
-                { strokeDasharray: "0.3 1", strokeDashoffset: "0", opacity: 0.3 },
-                { strokeDasharray: "1 1", strokeDashoffset: "-1", opacity: 0.6 },
-                { strokeDasharray: "0.3 1", strokeDashoffset: "0", opacity: 0.3 }
+                { strokeDashoffset: "0", opacity: 0.25 },
+                { strokeDashoffset: "-1", opacity: 0.55 },
+                { strokeDashoffset: "-2", opacity: 0.25 }
             ], {
                 duration: duration,
                 iterations: Infinity,
