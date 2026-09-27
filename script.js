@@ -1,4 +1,52 @@
+function initFloatingPaths() {
+    const container = document.getElementById('floating-paths');
+    if (!container) return;
+
+    const svgNS = "http://www.w3.org/2000/svg";
+    [-1, 1].forEach(position => {
+        const svg = document.createElementNS(svgNS, "svg");
+        svg.setAttribute("viewBox", "0 0 696 316");
+        svg.setAttribute("fill", "none");
+        svg.setAttribute("preserveAspectRatio", "xMidYMid slice");
+        svg.classList.add("floating-paths-svg");
+
+        for (let i = 0; i < 36; i++) {
+            const path = document.createElementNS(svgNS, "path");
+            const d = `M-${380 - i * 5 * position} -${189 + i * 6}C-${
+                380 - i * 5 * position
+            } -${189 + i * 6} -${312 - i * 5 * position} ${216 - i * 6} ${
+                152 - i * 5 * position
+            } ${343 - i * 6}C${616 - i * 5 * position} ${470 - i * 6} ${
+                684 - i * 5 * position
+            } ${875 - i * 6} ${684 - i * 5 * position} ${875 - i * 6}`;
+
+            path.setAttribute("d", d);
+            path.setAttribute("stroke", "currentColor");
+            path.setAttribute("stroke-width", String(0.5 + i * 0.03));
+            path.setAttribute("stroke-opacity", String(0.1 + i * 0.03));
+            path.setAttribute("pathLength", "1");
+
+            const duration = (20 + Math.random() * 10) * 1000;
+            path.animate([
+                { strokeDasharray: "0.3 1", strokeDashoffset: "0", opacity: 0.3 },
+                { strokeDasharray: "1 1", strokeDashoffset: "-1", opacity: 0.6 },
+                { strokeDasharray: "0.3 1", strokeDashoffset: "0", opacity: 0.3 }
+            ], {
+                duration: duration,
+                iterations: Infinity,
+                easing: "linear"
+            });
+
+            svg.appendChild(path);
+        }
+
+        container.appendChild(svg);
+    });
+}
+
 document.addEventListener('DOMContentLoaded', async () => {
+    initFloatingPaths();
+
     const urlParams = new URLSearchParams(window.location.search);
     const placeId = urlParams.get('id');
 
