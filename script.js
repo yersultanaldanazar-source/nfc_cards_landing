@@ -124,14 +124,11 @@ function hexToRgba(hex) {
     return [r, g, b, 1];
 }
 
-function initAnimatedGradient() {
-    const canvas = document.getElementById('bg-canvas');
-    if (!canvas) return;
-
-    const params = {
+const PRESETS = {
+    Aurora: {
         color1: "#0a001a",
         color2: "#1a0b2e",
-        color3: "#f20089",
+        color3: "#2e1065",
         rotation: -45,
         proportion: 60,
         scale: 0.6,
@@ -141,9 +138,48 @@ function initAnimatedGradient() {
         swirlIterations: 10,
         softness: 100,
         offset: 200,
-        shape: 2, // Edge
+        shape: 2,
         shapeSize: 50
-    };
+    },
+    Amethyst: {
+        color1: "#0a001a",
+        color2: "#1a0b2e",
+        color3: "#3b0764",
+        rotation: -45,
+        proportion: 60,
+        scale: 0.6,
+        speed: 15,
+        distortion: 40,
+        swirl: 80,
+        swirlIterations: 10,
+        softness: 100,
+        offset: 200,
+        shape: 2,
+        shapeSize: 50
+    },
+    Burgundy: {
+        color1: "#0a000d",
+        color2: "#1f050b",
+        color3: "#4c0519",
+        rotation: -45,
+        proportion: 60,
+        scale: 0.6,
+        speed: 15,
+        distortion: 40,
+        swirl: 80,
+        swirlIterations: 10,
+        softness: 100,
+        offset: 200,
+        shape: 2,
+        shapeSize: 50
+    }
+};
+
+function initAnimatedGradient(presetName = "Amethyst") {
+    const canvas = document.getElementById('bg-canvas');
+    if (!canvas) return;
+
+    const params = PRESETS[presetName] || PRESETS.Amethyst;
 
     try {
         const gl = canvas.getContext("webgl2", {
