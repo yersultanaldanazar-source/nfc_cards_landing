@@ -4,11 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Оцените наш сервис</title>
-    <link rel="stylesheet" href="style.css?v=6">
+    <link rel="stylesheet" href="style.css?v=7">
 </head>
 <body>
-    <!-- WebGL2 Animated Gradient Background (Aurora) -->
-    <canvas id="bg-canvas" class="animated-gradient-canvas" aria-hidden="true"></canvas>
+    <!-- Мягкий медитативный темный градиент (AmbientGradient - Amethyst) -->
+    <div class="ambient-gradient-bg" data-variant="amethyst" aria-hidden="true">
+        <div class="ambient-blob blob-1"></div>
+        <div class="ambient-blob blob-2"></div>
+        <div class="ambient-blob blob-3"></div>
+        <div class="ambient-noise"></div>
+    </div>
 
     <div class="container" id="app-container">
         <div id="status-message">Загрузка...</div>
@@ -34,6 +39,6 @@
             </div>
         </div>
     </div>
-    <script src="script.js?v=6"></script>
+    <script src="script.js?v=7"></script>
 </body>
 </html>
