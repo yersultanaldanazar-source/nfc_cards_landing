@@ -3,8 +3,23 @@ document.addEventListener('DOMContentLoaded', async () => {
     const placeId = urlParams.get('id');
 
     const statusMessage = document.getElementById('status-message');
-    const content = document.getElementById('content');
-    
+    const stepRate = document.getElementById('step-rate');
+    const stepRedirect = document.getElementById('step-redirect');
+    const stepComplaint = document.getElementById('step-complaint');
+    const stepSent = document.getElementById('step-sent');
+
+    const showStep = (stepName) => {
+        stepRate.classList.add('hidden');
+        stepRedirect.classList.add('hidden');
+        stepComplaint.classList.add('hidden');
+        stepSent.classList.add('hidden');
+
+        if (stepName === 'rate') stepRate.classList.remove('hidden');
+        if (stepName === 'redirect') stepRedirect.classList.remove('hidden');
+        if (stepName === 'complaint') stepComplaint.classList.remove('hidden');
+        if (stepName === 'sent') stepSent.classList.remove('hidden');
+    };
+
     if (!placeId) {
         statusMessage.textContent = 'Ошибка: Заведение не указано в ссылке. Отсканируйте NFC-метку еще раз.';
         return;
@@ -15,94 +30,125 @@ document.addEventListener('DOMContentLoaded', async () => {
     try {
         const response = await fetch('/places.json?v=' + new Date().getTime());
         if (!response.ok) throw new Error('Network error');
-        
+
         const places = await response.json();
         placeData = places[placeId];
-        
+
         if (!placeData) {
             statusMessage.textContent = 'Ошибка: Заведение не найдено в базе.';
             return;
         }
 
         document.getElementById('place-name').textContent = placeData.name;
-        document.getElementById('logo').src = placeData.logo_url;
-        
+        const logoImg = document.getElementById('logo');
+        const logoFallback = document.getElementById('logo-fallback');
+
+        if (placeData.logo_url) {
+            logoImg.src = placeData.logo_url;
+            logoImg.onerror = () => {
+                logoImg.classList.add('hidden');
+                logoFallback.textContent = placeData.name.charAt(0);
+                logoFallback.classList.remove('hidden');
+            };
+        } else {
+            logoImg.classList.add('hidden');
+            logoFallback.textContent = placeData.name.charAt(0);
+            logoFallback.classList.remove('hidden');
+        }
+
+        const redirectLink = document.getElementById('redirect-link');
+        if (redirectLink) {
+            redirectLink.href = placeData.map_link;
+        }
+
         statusMessage.classList.add('hidden');
-        content.classList.remove('hidden');
+        showStep('rate');
     } catch (error) {
         statusMessage.textContent = 'Ошибка загрузки данных.';
         console.error(error);
         return;
     }
 
-    const stars = document.querySelectorAll('.star');
-    const complaintBlock = document.getElementById('complaint-block');
-    let selectedRating = 0;
+    const starButtons = document.querySelectorAll('.star-btn');
+    let rating = 0;
+    let hoverRating = 0;
 
-    const updateStars = (rating) => {
-        stars.forEach(star => {
-            const value = parseInt(star.getAttribute('data-value'));
-            if (value <= rating) {
-                star.classList.add('active');
+    const renderStars = () => {
+        const activeScore = hoverRating || rating;
+        starButtons.forEach(btn => {
+            const val = parseInt(btn.getAttribute('data-value'), 10);
+            if (val <= activeScore) {
+                btn.classList.add('active');
             } else {
-                star.classList.remove('active');
+                btn.classList.remove('active');
             }
         });
     };
 
-    stars.forEach(star => {
-        star.addEventListener('mouseenter', () => {
-            if (selectedRating === 0) updateStars(parseInt(star.getAttribute('data-value')));
-        });
-        
-        star.addEventListener('mouseleave', () => {
-            if (selectedRating === 0) updateStars(0);
+    starButtons.forEach(btn => {
+        const val = parseInt(btn.getAttribute('data-value'), 10);
+
+        btn.addEventListener('mouseenter', () => {
+            hoverRating = val;
+            renderStars();
         });
 
-        star.addEventListener('click', () => {
-            selectedRating = parseInt(star.getAttribute('data-value'));
-            updateStars(selectedRating);
-            
-            if (selectedRating >= 4) {
-                window.location.href = placeData.map_link;
+        btn.addEventListener('mouseleave', () => {
+            hoverRating = 0;
+            renderStars();
+        });
+
+        btn.addEventListener('click', () => {
+            rating = val;
+            renderStars();
+
+            if (val >= 4) {
+                // 4-5 звезд: экран благодарности и редирект в 2ГИС
+                showStep('redirect');
+                setTimeout(() => {
+                    window.location.href = placeData.map_link;
+                }, 1200);
             } else {
-                complaintBlock.classList.remove('hidden');
+                // 1-3 звезды: перехватываем негатив внутри
+                showStep('complaint');
             }
         });
     });
 
-    const submitBtn = document.getElementById('submit-btn');
-    const complaintInput = document.getElementById('complaint-input');
-    const thankYouBlock = document.getElementById('thank-you-block');
+    // Кнопка "Назад" в форме жалобы
+    const backBtn = document.getElementById('back-btn');
+    backBtn.addEventListener('click', () => {
+        showStep('rate');
+    });
 
-    submitBtn.addEventListener('click', async () => {
+    // Отправка жалобы в Telegram
+    const complaintInput = document.getElementById('complaint-input');
+    const submitBtn = document.getElementById('submit-btn');
+    const submitBtnText = document.getElementById('submit-btn-text');
+
+    stepComplaint.addEventListener('submit', async (e) => {
+        e.preventDefault();
         const text = complaintInput.value.trim();
-        if (!text) {
-            alert('Пожалуйста, опишите проблему.');
-            return;
-        }
+        if (!text) return;
 
         submitBtn.disabled = true;
-        submitBtn.textContent = 'Отправка...';
+        submitBtnText.textContent = 'Отправка...';
 
         try {
             const response = await fetch('/api/send', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ placeId, stars: selectedRating, text })
+                body: JSON.stringify({ placeId, stars: rating, text })
             });
 
             if (!response.ok) throw new Error('API Error');
 
-            complaintBlock.classList.add('hidden');
-            document.getElementById('stars').classList.add('hidden');
-            document.getElementById('subtitle').classList.add('hidden');
-            thankYouBlock.classList.remove('hidden');
+            showStep('sent');
         } catch (error) {
             console.error(error);
             alert('Произошла ошибка при отправке. Попробуйте еще раз.');
             submitBtn.disabled = false;
-            submitBtn.textContent = 'Отправить';
+            submitBtnText.textContent = 'Отправить боссу';
         }
     });
 });
