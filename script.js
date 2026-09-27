@@ -148,7 +148,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             console.error(error);
             alert('Произошла ошибка при отправке. Попробуйте еще раз.');
             submitBtn.disabled = false;
-            submitBtnText.textContent = 'Отправить боссу';
+            submitBtnText.textContent = 'Оставить отзыв';
         }
     });
 });
