@@ -39,6 +39,20 @@ document.addEventListener('DOMContentLoaded', async () => {
             return;
         }
 
+        // Применяем индивидуальную цветовую тему фона для заведения
+        const ambientBg = document.querySelector('.ambient-gradient-bg');
+        if (ambientBg) {
+            if (placeData.theme) {
+                ambientBg.setAttribute('data-variant', placeData.theme);
+            }
+            if (placeData.colors && Array.isArray(placeData.colors)) {
+                const blobs = ambientBg.querySelectorAll('.ambient-blob');
+                placeData.colors.forEach((col, idx) => {
+                    if (blobs[idx]) blobs[idx].style.backgroundColor = col;
+                });
+            }
+        }
+
         document.getElementById('place-name').textContent = placeData.name;
         const logoImg = document.getElementById('logo');
         const logoFallback = document.getElementById('logo-fallback');

@@ -74,9 +74,39 @@ body {
 .ambient-gradient-bg[data-variant="midnight"] .blob-2 { background-color: rgba(15, 23, 42, 0.50); }
 .ambient-gradient-bg[data-variant="midnight"] .blob-3 { background-color: rgba(30, 27, 75, 0.30); }
 
-.ambient-gradient-bg[data-variant="espresso"] .blob-1 { background-color: rgba(61, 33, 18, 0.35); }
-.ambient-gradient-bg[data-variant="espresso"] .blob-2 { background-color: rgba(39, 24, 16, 0.45); }
-.ambient-gradient-bg[data-variant="espresso"] .blob-3 { background-color: rgba(31, 22, 16, 0.40); }
+.ambient-gradient-bg[data-variant="espresso"] .blob-1 { background-color: rgba(120, 53, 15, 0.45); }
+.ambient-gradient-bg[data-variant="espresso"] .blob-2 { background-color: rgba(69, 26, 3, 0.50); }
+.ambient-gradient-bg[data-variant="espresso"] .blob-3 { background-color: rgba(180, 83, 9, 0.25); }
+
+/* Вариант Invictus (Фирменный красный + белый с градиентом) */
+.ambient-gradient-bg[data-variant="invictus"] {
+    background-color: #140406;
+    transition: background-color 0.5s ease;
+}
+.ambient-gradient-bg[data-variant="invictus"] .blob-1 {
+    background-color: rgba(220, 38, 38, 0.65); /* Насыщенный красный Invictus */
+}
+.ambient-gradient-bg[data-variant="invictus"] .blob-2 {
+    background-color: rgba(255, 255, 255, 0.38); /* Чистый белый световой шар */
+}
+.ambient-gradient-bg[data-variant="invictus"] .blob-3 {
+    background-color: rgba(185, 28, 28, 0.55); /* Глубокий алый градиент */
+}
+
+/* Вариант Emerald (Для ирландского паба Mad Murphy's) */
+.ambient-gradient-bg[data-variant="emerald"] {
+    background-color: #04120b;
+    transition: background-color 0.5s ease;
+}
+.ambient-gradient-bg[data-variant="emerald"] .blob-1 {
+    background-color: rgba(5, 150, 105, 0.45);
+}
+.ambient-gradient-bg[data-variant="emerald"] .blob-2 {
+    background-color: rgba(16, 185, 129, 0.28);
+}
+.ambient-gradient-bg[data-variant="emerald"] .blob-3 {
+    background-color: rgba(6, 78, 59, 0.50);
+}
 
 @keyframes ambientBlob1 {
     0%, 100% { transform: translate3d(0px, 0px, 0) scale(1); }

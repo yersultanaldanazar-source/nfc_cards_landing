@@ -3,30 +3,35 @@
     "name": "Coffee Boom",
     "logo_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfIby8tT0P1NMT3yoCU5JOVae9PyhRbmOW6S60TW--yz7RCowVnbNNQqP7&s=10",
     "map_link": "https://2gis.kz/almaty/firm/70000001038800551/tab/reviews",
-    "tg_chat_id": "-1004498552690"
+    "tg_chat_id": "-1004498552690",
+    "theme": "espresso"
   },
   "invictus_gym": {
     "name": "Invictus Gym",
     "logo_url": "https://placehold.co/150x150/000000/FFFFFF?text=IG",
     "map_link": "https://2gis.kz/",
-    "tg_chat_id": "-1000987654321"
+    "tg_chat_id": "-1000987654321",
+    "theme": "invictus"
   },
   "invictus_go_navoi": {
     "name": "Invictus GO Navoi",
     "logo_url": "https://yt3.googleusercontent.com/aFdkpIsb16lfVbBiD9DQNJsf8XcMnLWjQ_Qoql-ine0KdpUnQ6GuiSbOwVPH1lr6jRMJM0Zq=s900-c-k-c0x00ffffff-no-rj",
     "map_link": "https://2gis.kz/almaty/firm/70000001066599740/tab/reviews",
-    "tg_chat_id": "-5521704796"
+    "tg_chat_id": "-5521704796",
+    "theme": "invictus"
   },
   "dawat": {
     "name": "Invictus GO Navoi",
     "logo_url": "https://yt3.googleusercontent.com/aFdkpIsb16lfVbBiD9DQNJsf8XcMnLWjQ_Qoql-ine0KdpUnQ6GuiSbOwVPH1lr6jRMJM0Zq=s900-c-k-c0x00ffffff-no-rj",
     "map_link": "https://2gis.kz/almaty/firm/70000001066599740/tab/reviews",
-    "tg_chat_id": "-5521704796"
+    "tg_chat_id": "-5521704796",
+    "theme": "invictus"
   },
   "mad_murphys": {
     "name": "Mad Murphy's Irish Pub",
     "logo_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxEFYZng2-_rug6h2iGrOllOIQrZ_tTZLoXC0pdAt0SgjVS7Gy5ViU2tw&s=10",
     "map_link": "https://2gis.kz/almaty/firm/70000001061561947/tab/reviews",
-    "tg_chat_id": "-5424304619"
+    "tg_chat_id": "-5424304619",
+    "theme": "emerald"
   }
 }
